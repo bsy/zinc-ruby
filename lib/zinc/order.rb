@@ -1,5 +1,8 @@
+require 'zinc/base_order'
+
 module Zinc
-  class Order
+  class Order < BaseOrder
+
     def self.create(params = {})
       o = Order.new
       response = Zinc.request(:post, url, params)
@@ -11,16 +14,25 @@ module Zinc
 
     def self.get(id)
       o = Order.new
-      response = Zinc.request(:get, url+'/'+id, {})
+      response = Zinc.request(:get, url+'/' + id, {})
       if response
         o.set_values(response)
       end
       o
     end
 
-    def self.cancel(id)
-      o = Order.new
-      response = Zinc.request(:post, url+'/'+id+'/cancel', {id: id})
+    def self.cancel(id, params = {})
+      o = CancelledOrder.new
+      response = Zinc.request(:post, url+'/' + id + '/cancel', params)
+      if response
+        o.set_values(response)
+      end
+      o
+    end
+
+    def self.return(id, params = {})
+      o = ReturnedOrder.new
+      response = Zinc.request(:post, url + '/' + id + '/return', params)
       if response
         o.set_values(response)
       end
@@ -28,22 +40,10 @@ module Zinc
     end
 
     def self.url
-      Zinc.url_base+'orders'
-    end
-
-    def set_values(values)
-      @values = values
-    end
-
-    def method_missing(name, *args)
-      @values ||= {}
-      if name.to_s.end_with?('=')
-        @values[name.to_s] = args[0]
-      else
-        @values[name.to_s]
-      end
+      Zinc.url_base + 'orders'
     end
 
     private
   end
 end
+
