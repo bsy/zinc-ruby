@@ -229,6 +229,14 @@ def test_product_prices_response
   }
 end
 
+def test_order_case_response
+  {
+      state: 'open',
+      messages: {
+      }
+  }
+end
+
 def test_product_details_response
   {
       :status => "completed",

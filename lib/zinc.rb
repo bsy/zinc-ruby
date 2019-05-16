@@ -2,6 +2,7 @@ require 'json'
 require 'rest_client'
 
 require 'zinc/order'
+require 'zinc/order_case'
 require 'zinc/cancelled_order'
 require 'zinc/product_details'
 require 'zinc/product_prices'
