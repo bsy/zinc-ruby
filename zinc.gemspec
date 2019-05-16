@@ -3,8 +3,8 @@ spec = Gem::Specification.new do |s|
 	s.version = '0.1.0'
 	s.summary = 'Ruby bindings for the Zinc(https://zinc.io) API'
 	s.description = s.summary
-	s.authors = ['Julian Simioni']
-	s.email = ['julian.simioni@gmail.com']
+	s.authors = ['Julian Simioni', 'Ben Yee']
+	s.email = ['julian.simioni@gmail.com', 'benyee@gmail.com']
 
 	s.add_dependency('rest-client', '~> 2.0.1')
 
