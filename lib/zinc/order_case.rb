@@ -2,29 +2,22 @@ require 'zinc/base_order'
 
 module Zinc
   class OrderCase < BaseOrder
-
-    def self.create(case_id, params = {})
+    def self.create(order_id, params = {})
       o = OrderCase.new
-      response = Zinc.request(:post, url(case_id), params)
-      if response
-        o.set_values(response)
-      end
+      response = Zinc.request(:post, url(order_id), params)
+      o.set_values(response) if response
       o
     end
 
-    def self.get(case_id)
+    def self.get(order_id)
       o = OrderCase.new
-      response = Zinc.request(:get, url(case_id), {})
-      if response
-        o.set_values(response)
-      end
+      response = Zinc.request(:get, url(order_id), {})
+      o.set_values(response) if response
       o
     end
 
-    def self.url(case_id)
-      Zinc.url_base + 'orders' + '/' + case_id + '/case'
+    def self.url(order_id)
+      Zinc.url_base + 'orders' + '/' + order_id + '/case'
     end
-
   end
 end
-
